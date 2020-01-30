@@ -7,10 +7,12 @@ class Song < ActiveRecord::Base
   def artist_name=(name)
     self.artist = Artist.find_or_create_by(name: name)
   end
+  # setter method to find or create artist by passing in instance of song in name argument
 
   def artist_name
     self.artist.name if self.artist
-  end
+  end 
+  # getter method if song exists then it'll return song with artist name
 
   def genre_name=(genre)
     self.genre = Genre.find_or_create_by(name: genre)
@@ -18,10 +20,6 @@ class Song < ActiveRecord::Base
 
   def genre_name
     self.genre.name if self.genre
-  end
-
-  def note_contents
-    self.notes.collect(&:content)
   end
 
   def note_contents=(note_contents)
@@ -33,4 +31,7 @@ class Song < ActiveRecord::Base
     end
   end
 
+  def note_contents
+    self.notes.collect(&:content)
+  end
 end
